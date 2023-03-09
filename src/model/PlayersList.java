@@ -26,7 +26,7 @@ public class PlayersList {
     }
     private void removePlayer(LinkedListPlayerNode player, LinkedListPlayerNode current){
         if (current.getNext() == null) return;
-        if (player  == head){
+        if (player == head){
             if(player.getNext() == null){
                 head = null;
             } else {

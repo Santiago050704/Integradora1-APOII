@@ -5,8 +5,8 @@ public class Box {
     private int number;
     private Box next;
     private Box previous;
-    private Box tailSnake;
-    private Box headLadder;
+    private int tailSnake;
+    private int headLadder;
     private String identifier;
     private int itemClassifier; // 0 - nothing | 1 - snake | 2-Ladder
 
@@ -61,19 +61,19 @@ public class Box {
         this.previous = previous;
     }
 
-    public Box getTailSnake() {
+    public int getTailSnake() {
         return tailSnake;
     }
 
-    public void setTailSnake(Box tailSnake) {
+    public void setTailSnake(int tailSnake) {
         this.tailSnake = tailSnake;
     }
 
-    public Box getHeadLadder() {
+    public int getHeadLadder() {
         return headLadder;
     }
 
-    public void setHeadLadder(Box headLadder) {
+    public void setHeadLadder(int headLadder) {
         this.headLadder = headLadder;
     }
 

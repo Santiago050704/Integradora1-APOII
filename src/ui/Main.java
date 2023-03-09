@@ -32,8 +32,7 @@ public class Main {
             option = getOptionShowMenu(); 
             cleanConsole();
 			executeOption(option);
-            reader.nextLine();
-            reader.nextLine();
+   
             cleanConsole();
             menuController(option);
         }
