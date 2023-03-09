@@ -7,7 +7,8 @@ public class Box {
     private Box previous;
     private int tailSnake;
     private int headLadder;
-    private String identifier;
+    private char snakeIdentifier;
+    private int ladderIdentifier;
     private int itemClassifier; // 0 - nothing | 1 - snake | 2-Ladder
 
     private PlayersList playersList;
@@ -77,12 +78,20 @@ public class Box {
         this.headLadder = headLadder;
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public char getSnakeIdentifier() {
+        return snakeIdentifier;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setSnakeIdentifier(char snakeIdentifier) {
+        this.snakeIdentifier = snakeIdentifier;
+    }
+
+    public int getLadderIdentifier() {
+        return ladderIdentifier;
+    }
+
+    public void setLadderIdentifier(int ladderIdentifier) {
+        this.ladderIdentifier = ladderIdentifier;
     }
 
     public int getItemClassifier() {

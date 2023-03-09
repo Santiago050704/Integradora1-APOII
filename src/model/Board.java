@@ -2,7 +2,7 @@ package model;
 import java.util.Random;
 
 public class Board {
-  private final int TOTAL_SNAKES_AND_LADDERS;
+  private final int TOTAL_SNAKES_AND_LADDERS = 26;
 
     private Box head;
     private Box tail;
@@ -15,7 +15,6 @@ public class Board {
 
     //Constructor
     public Board(int rows, int columns, int numSnakes, int numLadders) {
-      TOTAL_SNAKES_AND_LADDERS = 26;
         this.rows = rows;
         this.columns = columns;
         this.numSnakes = numSnakes;
@@ -23,7 +22,7 @@ public class Board {
         this.size = this.rows * this.columns;
         random = new Random();
         initBoard(this.size);
-        establishSnakes(0, "A");
+        establishSnakes(0, 'A');
         establishLadders(0, 1);
     }
     
@@ -99,12 +98,12 @@ public class Board {
     }
     
     
-    private void establishSnakes(int counterSnakes, String identifier) {
+    private void establishSnakes(int counterSnakes, char identifier) {
       if (counterSnakes <= this.numSnakes) {
         int posHead = random.nextInt(this.size) + 1;
         Box box = searchBox(posHead, head);
         if (box.getItemClassifier() == 0 && posHead != 1) {
-          fillHead(posHead, this.head, identifier);
+          fillHeadSnake(posHead, this.head, identifier);
           establishSnakes(counterSnakes+=1, identifier++);
         } else {
           establishSnakes(counterSnakes, identifier);
@@ -113,13 +112,13 @@ public class Board {
 
     }
     
-    private void fillHeadSnake(int posHead, Box current, String identifier) {
+    private void fillHeadSnake(int posHead, Box current, char identifier) {
       if(current == null){
         return;
 		  }
 
 		  if(posHead == current.getNumber()){
-        current.setIdentifier("A");
+        current.setSnakeIdentifier(identifier);
         current.setItemClassifier(1);
         int posTail = random.nextInt(posHead - 1) + 1;
         fillTailSnake(posTail, this.head, identifier);
@@ -128,13 +127,13 @@ public class Board {
 
     }
     
-    private void fillTailSnake(int posTail, Box current, String identifier) {
+    private void fillTailSnake(int posTail, Box current, char identifier) {
       if (current == null) {
         return;
       }
 
       if (posTail == current.getNumber()) {
-        current.setIdentifier("A");
+        current.setSnakeIdentifier(identifier);
         current.setItemClassifier(1);
         current.setTailSnake(posTail);
         return;
@@ -147,7 +146,7 @@ public class Board {
         int posHead = random.nextInt(this.size) + 1;
         Box box = searchBox(posHead, head);
         if (box.getItemClassifier() == 0 && posHead != this.size) {
-          fillHead(posHead, this.head, identifier);
+          fillHeadLadder(posHead, this.head, identifier);
           establishLadders(counterLadders+=1, identifier+=1); 
         } else {
           establishLadders(counterLadders, identifier);
@@ -161,7 +160,7 @@ public class Board {
 		  }
 
 		  if(posHead == current.getNumber()){
-        current.setIdentifier(identifier);
+        current.setLadderIdentifier(identifier);
         current.setItemClassifier(2);
         current.setHeadLadder(posHead);
         int posTail = random.nextInt(posHead - 1) + 1;
@@ -177,7 +176,7 @@ public class Board {
       }
 
       if (posTail == current.getNumber()) {
-        current.setIdentifier(identifier);
+        current.setLadderIdentifier(identifier);
         current.setItemClassifier(2);
         return;
       }
@@ -193,7 +192,7 @@ public class Board {
 			  return current; 
 		  }
 
-		return search(goal, current.getNext()); 
+		return searchBox(goal, current.getNext());
 	}
 
 

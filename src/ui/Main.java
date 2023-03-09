@@ -89,7 +89,11 @@ public class Main {
         int rows = reader.nextInt();
         System.out.print("Columns: ");
         int columns = reader.nextInt();
-        game.initializeBoard(rows, columns);
+        System.out.print("Snakes: ");
+        int numSnakes = reader.nextInt();
+        System.out.print("Ladders: ");
+        int numLadders = reader.nextInt();
+        game.initializeBoard(rows, columns, numSnakes, numLadders);
     }
 
     public void uiChoosePlayers(int countPlayer){

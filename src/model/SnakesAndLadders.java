@@ -14,9 +14,9 @@ public class SnakesAndLadders {
         board.print();
     }
 
-    public void initializeBoard(int rows, int columns){
+    public void initializeBoard(int rows, int columns, int numSnakes, int numLadders){
         
-       this.board = new Board(rows, columns);
+       this.board = new Board(rows, columns, numSnakes, numLadders);
        this.board.getHead().setPlayersList(playerList);
        play();
     }
