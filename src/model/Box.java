@@ -25,7 +25,7 @@ public class Box {
     public String toString()
     {
         String players = getStringPlayers(playersList.getHead());
-        return "[" + this.number +  " " + players + "]";
+        return "[" + this.number +  " " + players + ((itemClassifier==1)?snakeIdentifier:ladderIdentifier) + "]  ";
     }
 
 

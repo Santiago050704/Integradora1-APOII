@@ -22,8 +22,8 @@ public class Board {
         this.size = this.rows * this.columns;
         random = new Random();
         initBoard(this.size);
-        establishSnakes(0, 'A');
-        establishLadders(0, 1);
+        establishSnakes(1, 'A');
+        establishLadders(1, 1);
     }
     
     //Method to initialize the board, is called from the constructor
@@ -100,11 +100,14 @@ public class Board {
     
     private void establishSnakes(int counterSnakes, char identifier) {
       if (counterSnakes <= this.numSnakes) {
-        int posHead = random.nextInt(this.size) + 1;
+        int posHead = random.nextInt(2, this.size + 1);
+        System.out.println(posHead);
         Box box = searchBox(posHead, head);
-        if (box.getItemClassifier() == 0 && posHead != 1) {
+
+        if (box.getItemClassifier() == 0) {
+          System.out.println("Está sucediendo");
           fillHeadSnake(posHead, this.head, identifier);
-          establishSnakes(counterSnakes+=1, identifier++);
+          establishSnakes(counterSnakes+=1, (char)(identifier + 1));
         } else {
           establishSnakes(counterSnakes, identifier);
         }
@@ -116,14 +119,19 @@ public class Board {
       if(current == null){
         return;
 		  }
-
+      System.out.println(current.getNumber());
 		  if(posHead == current.getNumber()){
         current.setSnakeIdentifier(identifier);
         current.setItemClassifier(1);
-        int posTail = random.nextInt(posHead - 1) + 1;
+        System.out.println(current.getNumber());
+        System.out.println(current.getItemClassifier());
+        System.out.println(current.getSnakeIdentifier());
+        int posTail = random.nextInt(1, posHead + 1);
         fillTailSnake(posTail, this.head, identifier);
-        return;
-		  }
+        
+      } else {
+        fillHeadSnake(posHead, current.getNext(), identifier);
+      }
 
     }
     
@@ -143,9 +151,9 @@ public class Board {
 
     private void establishLadders(int counterLadders, int identifier) {
       if (counterLadders <= this.numLadders) {
-        int posHead = random.nextInt(this.size) + 1;
+        int posHead = random.nextInt(2, this.size + 1);
         Box box = searchBox(posHead, head);
-        if (box.getItemClassifier() == 0 && posHead != this.size) {
+        if (box.getItemClassifier() == 0) {
           fillHeadLadder(posHead, this.head, identifier);
           establishLadders(counterLadders+=1, identifier+=1); 
         } else {
@@ -163,7 +171,7 @@ public class Board {
         current.setLadderIdentifier(identifier);
         current.setItemClassifier(2);
         current.setHeadLadder(posHead);
-        int posTail = random.nextInt(posHead - 1) + 1;
+        int posTail = random.nextInt(1, posHead + 1);
         fillTailLadder(posTail, this.head, identifier);
         return;
 		  }

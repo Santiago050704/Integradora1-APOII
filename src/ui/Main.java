@@ -31,8 +31,9 @@ public class Main {
         if(option != 0){
             option = getOptionShowMenu(); 
             cleanConsole();
-			executeOption(option);
-   
+      			executeOption(option);
+            reader.nextLine();
+            reader.nextLine();
             cleanConsole();
             menuController(option);
         }
