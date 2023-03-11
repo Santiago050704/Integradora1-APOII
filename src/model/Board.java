@@ -22,7 +22,7 @@ public class Board {
         this.size = this.rows * this.columns;
         random = new Random();
         initBoard(this.size);
-        establishSnakes(1, 'A');
+        establishSnakes(1, "A");
         establishLadders(1, 1);
     }
     
@@ -98,7 +98,7 @@ public class Board {
     }
     
     
-    private void establishSnakes(int counterSnakes, char identifier) {
+    private void establishSnakes(int counterSnakes, String identifier) {
       if (counterSnakes <= this.numSnakes) {
         int posHead = random.nextInt(2, this.size + 1);
         System.out.println(posHead);
@@ -106,8 +106,12 @@ public class Board {
 
         if (box.getItemClassifier() == 0) {
           System.out.println("Está sucediendo");
+          //char nextIdentifier = (char) (identifier++);
+          
           fillHeadSnake(posHead, this.head, identifier);
-          establishSnakes(counterSnakes+=1, (char)(identifier + 1));
+          char nextIdentifier = identifier.charAt(0);
+          nextIdentifier++;
+          establishSnakes(counterSnakes+=1, nextIdentifier + "");
         } else {
           establishSnakes(counterSnakes, identifier);
         }
@@ -115,7 +119,7 @@ public class Board {
 
     }
     
-    private void fillHeadSnake(int posHead, Box current, char identifier) {
+    private void fillHeadSnake(int posHead, Box current, String identifier) {
       if(current == null){
         return;
 		  }
@@ -135,7 +139,7 @@ public class Board {
 
     }
     
-    private void fillTailSnake(int posTail, Box current, char identifier) {
+    private void fillTailSnake(int posTail, Box current, String identifier) {
       if (current == null) {
         return;
       }
